@@ -12,7 +12,7 @@ class Particle
 {
 public:
 	Particle();
-	Particle(float pos_x, float pos_y, float vel_x, float vel_y, float lifetime, float angle);
+	Particle(float pos_x, float pos_y, float vel, float lifetime, float angle);
 	~Particle();
 
 	void update();
@@ -23,8 +23,7 @@ private:
 
 	float pos_x;
 	float pos_y;
-	float vel_x;
-	float vel_y;
+	float vel;
 	float lifetime;
 	float angle;
 };
