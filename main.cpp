@@ -12,8 +12,9 @@ int main()
 {
 	sf::Clock clock;
     sf::RenderWindow window(sf::VideoMode(1080,720), "Particle System");
-	float accumulatedTime = 0;
+	float accumulatedTime = 0.0f;
 	ParticleSystem* ps = new ParticleSystem();
+
 
     while (window.isOpen())
     {
@@ -26,10 +27,10 @@ int main()
 		float dt = clock.restart().asSeconds();
 		accumulatedTime += dt;
 
-		while (accumulatedTime >= 1.0 / 60.0)
+		while (accumulatedTime >= 1.0f / 60.0f)
 		{
 			ps->update_state();
-			accumulatedTime -= 1.0 / 60.0;
+			accumulatedTime -= 1.0f / 60.0f;
 		}
 		ps->render_frame(window);
 		window.display();

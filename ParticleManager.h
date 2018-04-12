@@ -8,18 +8,21 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
 
+class Particle;
+class Behaviour;
+
 class ParticleManager
 {
 public:
 	ParticleManager();
-	ParticleManager(float pos_x, float pos_y, float vel_min, float vel_max, 
-					float lifetime_min, float lifetime_max, float angle_min, float angle_max);
+	ParticleManager(float pos_x, float pos_y, float vel_min, float vel_max, float lifetime_min, 
+					float lifetime_max, float angle_min, float angle_max, float size,std::vector<Behaviour*> b, sf::Texture& tex);
 	~ParticleManager();
 
 	void update();
 	void draw(sf::RenderWindow& window);
 
-private:
+
 	float pos_x;
 	float pos_y;
 	float vel_min;
@@ -28,4 +31,11 @@ private:
 	float lifetime_max;
 	float angle_min;
 	float angle_max;
+	float size;
+
+private:
+	std::vector<Particle*> p;
+	std::vector<Behaviour*> b;
+
+		void reset(int i);
 };

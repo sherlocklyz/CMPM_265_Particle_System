@@ -12,18 +12,20 @@ class Particle
 {
 public:
 	Particle();
-	Particle(float pos_x, float pos_y, float vel, float lifetime, float angle);
+	Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, float size, sf::Texture& tex);
 	~Particle();
 
 	void update();
 	void draw(sf::RenderWindow& window);
 
-private:
-	sf::RectangleShape* shape;
-
 	float pos_x;
 	float pos_y;
+	float vel_end;
 	float vel;
-	float lifetime;
 	float angle;
-};
+	float size;
+	float lifetime;
+	float time;
+	
+	sf::RectangleShape* shape;
+	};

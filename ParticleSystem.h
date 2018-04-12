@@ -8,6 +8,11 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
 
+#include "Behaviour.h"
+
+class ParticleManager;
+
+
 class ParticleSystem
 {
 public:
@@ -16,4 +21,16 @@ public:
 
 	void update_state();
 	void render_frame(sf::RenderWindow& window);
+
+private:
+	std::vector<ParticleManager*> pm;
+	std::vector<Behaviour*> b;
+
+	LinearMovement* m1;
+	CubeMovement* m2;
+	SinOutMovement* m3;
+
+
+	sf::Texture tex1;
+	sf::Texture tex2;
 };
