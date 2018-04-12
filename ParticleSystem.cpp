@@ -1,14 +1,14 @@
 #include "ParticleSystem.h"
 #include "ParticleManager.h"
 #include "Behaviour.h"
+#include <stdio.h>
 
 ParticleSystem::ParticleSystem()
 {
 	m1 = new LinearMovement();
 	m2 = new CubeMovement();
 	m3 = new SinOutMovement();
-	int i = rand() % 3;
-	switch (i)
+	switch (rand() % 3)
 	{
 	case 0:
 		this->b.push_back(m1);
@@ -21,11 +21,13 @@ ParticleSystem::ParticleSystem()
 		break;
 	}
 	
+	
 	tex1.loadFromFile("Circle_Aura_05.png");
 	tex2.loadFromFile("Crystal_03.png");
 
+	//cout << b
 
-	ParticleManager* particle_manager = new ParticleManager(300, 300, 3, 6, 3, 5, -30, 30, 10, b, tex1);
+	ParticleManager* particle_manager = new ParticleManager(300, 300, 3, 6, 1, 5, 0, 360, 20, 1000, b, tex1);
 	pm.push_back(particle_manager);
 }
 

@@ -15,8 +15,8 @@ class ParticleManager
 {
 public:
 	ParticleManager();
-	ParticleManager(float pos_x, float pos_y, float vel_min, float vel_max, float lifetime_min, 
-					float lifetime_max, float angle_min, float angle_max, float size,std::vector<Behaviour*> b, sf::Texture& tex);
+	ParticleManager(float pos_x, float pos_y, float vel_min, float vel_max, float lifetime_min, float lifetime_max, 
+					float angle_min, float angle_max, float size, float init_number, std::vector<Behaviour*> b, sf::Texture& tex);
 	~ParticleManager();
 
 	void update();
@@ -31,6 +31,7 @@ public:
 	float lifetime_max;
 	float angle_min;
 	float angle_max;
+	float init_number;
 	float size;
 
 private:

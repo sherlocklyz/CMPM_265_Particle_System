@@ -5,11 +5,13 @@
 #include <SFML/System.hpp>
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
+#include <time.h>
 
 #include "ParticleSystem.h"
 
 int main()
 {
+	srand((unsigned)time(0));
 	sf::Clock clock;
     sf::RenderWindow window(sf::VideoMode(1080,720), "Particle System");
 	float accumulatedTime = 0.0f;

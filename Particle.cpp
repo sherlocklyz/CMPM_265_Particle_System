@@ -1,6 +1,7 @@
 #include "Particle.h"
 #include "Behaviour.h"
 #include <vector>
+#include <math.h>
 
 Particle::Particle()
 {
@@ -23,7 +24,6 @@ Particle::Particle(float pos_x, float pos_y, float vel_end, float lifetime, floa
 	shape->setOrigin(sf::Vector2f(size / 2, size / 2));
 	shape->setPosition(sf::Vector2f(pos_x, pos_y));
 	shape->setTexture(&tex);
-	//shape->setFillColor(sf::Color::White);
 
 }
 
@@ -37,8 +37,8 @@ void Particle::update()
 {
 	time += 1.0f / 60.0f;
 	sf::Vector2f pos = shape->getPosition();
-	pos.x += vel;
-	pos.y += vel;
+	pos.x += vel * cosf(this->angle * 3.1415926f / 180.0f);
+	pos.y += vel * sinf(this->angle * 3.1415926f / 180.0f);
 	shape->setPosition(pos);
 }
 
