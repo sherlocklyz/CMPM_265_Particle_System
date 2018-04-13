@@ -8,7 +8,7 @@ Particle::Particle()
 
 }
 
-Particle::Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, float size, sf::Texture& tex)
+Particle::Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, float size, Behaviour* b, sf::Texture& tex)
 {
 	this->pos_x = pos_x;
 	this->pos_y = pos_y;
@@ -16,6 +16,7 @@ Particle::Particle(float pos_x, float pos_y, float vel_end, float lifetime, floa
 	this->lifetime = lifetime;
 	this->angle = angle;
 	this->size = size;
+	this->b = b;
 
 	time = 0.0f;
 
@@ -37,6 +38,7 @@ void Particle::update()
 {
 	time += 1.0f / 60.0f;
 	sf::Vector2f pos = shape->getPosition();
+	vel = vel_end * this->b->behave(this->time / this->lifetime);
 	pos.x += vel * cosf(this->angle * 3.1415926f / 180.0f);
 	pos.y += vel * sinf(this->angle * 3.1415926f / 180.0f);
 	shape->setPosition(pos);

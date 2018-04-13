@@ -5,30 +5,31 @@
 
 ParticleSystem::ParticleSystem()
 {
-	m1 = new LinearMovement();
-	m2 = new CubeMovement();
-	m3 = new SinOutMovement();
-	switch (rand() % 3)
+	for (int i = 0; i < 2; i++)
 	{
-	case 0:
-		this->b.push_back(m1);
-		break;
-	case 1:
-		this->b.push_back(m2);
-		break;
-	case 2:
-		this->b.push_back(m3);
-		break;
+		switch (rand() % 3)
+		{
+		case 0:
+			behaviour = new Uniform();
+			break;
+		case 1:
+			behaviour = new EaseIn();
+			break;
+		case 2:
+			behaviour = new EaseOut();
+			break;
+		}
+		b.push_back(behaviour);
 	}
-	
 	
 	tex1.loadFromFile("Circle_Aura_05.png");
 	tex2.loadFromFile("Crystal_03.png");
 
-	//cout << b
 
-	ParticleManager* particle_manager = new ParticleManager(300, 300, 3, 6, 1, 5, 0, 360, 20, 1000, b, tex1);
-	pm.push_back(particle_manager);
+	ParticleManager* pm1 = new ParticleManager(300, 300, 3, 6, 1, 5, 0, 360, 20, 1000, b[0], tex1);
+	pm.push_back(pm1);
+	ParticleManager* pm2 = new ParticleManager(800, 500, 2, 4, 2, 6, 0, 180, 100, 200, b[1], tex2);
+	pm.push_back(pm2);
 }
 
 ParticleSystem::~ParticleSystem()
@@ -40,12 +41,8 @@ ParticleSystem::~ParticleSystem()
 		delete temp;
 		temp = nullptr;
 	}
-	delete m1;
-	m1 = nullptr;
-	delete m2;
-	m2 = nullptr;
-	delete m3;
-	m3 = nullptr;
+	delete behaviour;
+	behaviour = nullptr;
 }
 
 void ParticleSystem::update_state()

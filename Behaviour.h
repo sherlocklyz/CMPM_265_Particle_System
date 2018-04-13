@@ -5,23 +5,23 @@ class Particle;
 class Behaviour
 {
 public:
-	virtual void behave(Particle* p) {};
+	virtual float behave(float f) { return 0; };
 };
 
-class LinearMovement : public Behaviour
+class Uniform : public Behaviour
 {
 public:
-	virtual void behave(Particle* p);
+	virtual float behave(float f);
 };
 
-class CubeMovement : public Behaviour
+class EaseIn : public Behaviour
 {
 public:
-	virtual void behave(Particle* p);
+	virtual float behave(float f);
 };
 
-class SinOutMovement : public Behaviour
+class EaseOut : public Behaviour
 {
 public:
-	virtual void behave(Particle* p);
+	virtual float behave(float f);
 };

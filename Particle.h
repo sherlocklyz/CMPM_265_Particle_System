@@ -8,11 +8,13 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
 
+class Behaviour;
+
 class Particle
 {
 public:
 	Particle();
-	Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, float size, sf::Texture& tex);
+	Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, float size, Behaviour* b, sf::Texture& tex);
 	~Particle();
 
 	void update();
@@ -26,6 +28,7 @@ public:
 	float size;
 	float lifetime;
 	float time;
-	
+	Behaviour* b;
+
 	sf::RectangleShape* shape;
 	};

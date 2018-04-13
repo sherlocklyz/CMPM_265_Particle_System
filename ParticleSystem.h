@@ -24,11 +24,9 @@ public:
 
 private:
 	std::vector<ParticleManager*> pm;
-	std::vector<Behaviour*> b;
 
-	LinearMovement* m1;
-	CubeMovement* m2;
-	SinOutMovement* m3;
+	Behaviour* behaviour;
+	std::vector<Behaviour*> b;
 
 
 	sf::Texture tex1;
