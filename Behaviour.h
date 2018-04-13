@@ -14,6 +14,18 @@ public:
 	virtual float behave(float f);
 };
 
+class LinearUp : public Behaviour
+{
+public:
+	virtual float behave(float f);
+};
+
+class LinearDown : public Behaviour
+{
+public:
+	virtual float behave(float f);
+};
+
 class EaseIn : public Behaviour
 {
 public:

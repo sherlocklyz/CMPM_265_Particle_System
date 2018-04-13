@@ -7,28 +7,37 @@ ParticleSystem::ParticleSystem()
 {
 	for (int i = 0; i < 2; i++)
 	{
-		switch (rand() % 3)
+		for (int j = 0; j < 3; j++)
 		{
-		case 0:
-			behaviour = new Uniform();
-			break;
-		case 1:
-			behaviour = new EaseIn();
-			break;
-		case 2:
-			behaviour = new EaseOut();
-			break;
+			switch (rand() % 5)
+			{
+			case 0:
+				b[j] = new Uniform();
+				break;
+			case 1:
+				b[j] = new LinearUp();
+				break;
+			case 2:
+				b[j] = new LinearDown();
+				break;
+			case 3:
+				b[j] = new EaseIn();
+				break;
+			case 4:
+				b[j] = new EaseOut();
+				break;
+			}
+			b_collection[j].push_back(b[j]);
 		}
-		b.push_back(behaviour);
 	}
 	
 	tex1.loadFromFile("Circle_Aura_05.png");
 	tex2.loadFromFile("Crystal_03.png");
 
 
-	ParticleManager* pm1 = new ParticleManager(300, 300, 3, 6, 1, 5, 0, 360, 20, 1000, b[0], tex1);
+	ParticleManager* pm1 = new ParticleManager(300, 300, 2, 6, 3, 5, 0, 360, 20, 1000, b_collection[0], tex1);
 	pm.push_back(pm1);
-	ParticleManager* pm2 = new ParticleManager(800, 500, 2, 4, 2, 6, 0, 180, 100, 200, b[1], tex2);
+	ParticleManager* pm2 = new ParticleManager(800, 500, 2, 4, 2, 6, -180, 0, 100, 200, b_collection[1], tex2);
 	pm.push_back(pm2);
 }
 
@@ -41,8 +50,11 @@ ParticleSystem::~ParticleSystem()
 		delete temp;
 		temp = nullptr;
 	}
-	delete behaviour;
-	behaviour = nullptr;
+	for (int i = 0; i < 3; i++)
+	{
+		delete b[i];
+		b[i] = nullptr;
+	}
 }
 
 void ParticleSystem::update_state()

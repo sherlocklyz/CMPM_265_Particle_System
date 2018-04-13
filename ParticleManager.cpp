@@ -8,7 +8,7 @@ ParticleManager::ParticleManager()
 }
 
 ParticleManager::ParticleManager(float pos_x, float pos_y, float vel_min, float vel_max, float lifetime_min, float lifetime_max, 
-								 float angle_min, float angle_max, float size, float init_number, Behaviour* b, sf::Texture& tex)
+								 float angle_min, float angle_max, float size, float init_number, std::vector<Behaviour*> b, sf::Texture& tex)
 {
 	this->pos_x = pos_x;
 	this->pos_y = pos_y;
@@ -72,10 +72,11 @@ void ParticleManager::draw(sf::RenderWindow& window)
 
 void ParticleManager::reset(int i)
 {
+	p[i]->shape->setSize(sf::Vector2f(0, 0));
+	p[i]->shape->setOrigin(sf::Vector2f(0, 0));
 	p[i]->shape->setPosition(this->pos_x, this->pos_y);
 	p[i]->vel_end = rand() % ((int)(vel_max * 10) - (int)(vel_min * 10)) / 10.0f + vel_min;
 	p[i]->lifetime = rand() % ((int)(lifetime_max * 10) - (int)(lifetime_min * 10)) / 10.0f + lifetime_min;
 	p[i]->angle = rand() % ((int)(angle_max * 10) - (int)(angle_min * 10)) / 10.0f + angle_min;
-	p[i]->size = this->size;
 	p[i]->time = 0.0f;
 }

@@ -25,9 +25,8 @@ public:
 private:
 	std::vector<ParticleManager*> pm;
 
-	Behaviour* behaviour;
-	std::vector<Behaviour*> b;
-
+	Behaviour* b[3];
+	std::vector<Behaviour*> b_collection[3];
 
 	sf::Texture tex1;
 	sf::Texture tex2;

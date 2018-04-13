@@ -4,7 +4,17 @@
 
 float Uniform::behave(float f)
 {
+	return 1;
+}
+
+float LinearUp::behave(float f)
+{
 	return f;
+}
+
+float LinearDown::behave(float f)
+{
+	return 1 - f;
 }
 
 float EaseIn::behave(float f)
