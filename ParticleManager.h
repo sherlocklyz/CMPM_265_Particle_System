@@ -33,10 +33,12 @@ public:
 	float angle_max;
 	float init_number;
 	float size;
+	sf::Texture tex;
 
 private:
 	std::vector<Particle*> p;
 	std::vector<Behaviour*> b;
 
-		void reset(int i);
+	void reset(int i);
+	void add_particle();
 };

@@ -21,6 +21,7 @@ ParticleManager::ParticleManager(float pos_x, float pos_y, float vel_min, float 
 	this->size = size;
 	this->init_number = init_number;
 	this->b = b;
+	this->tex = tex;
 
 	for (int i = 0; i < this->init_number; i++)
 	{
@@ -49,6 +50,7 @@ ParticleManager::~ParticleManager()
 
 void ParticleManager::update()
 {
+	add_particle();
 	for (int i = 0; i < p.size(); i++)
 	{
 		if (p[i]->time <= p[i]->lifetime)
@@ -72,11 +74,36 @@ void ParticleManager::draw(sf::RenderWindow& window)
 
 void ParticleManager::reset(int i)
 {
+	p[i]->time = 0.0f;
 	p[i]->shape->setSize(sf::Vector2f(0, 0));
 	p[i]->shape->setOrigin(sf::Vector2f(0, 0));
 	p[i]->shape->setPosition(this->pos_x, this->pos_y);
 	p[i]->vel_end = rand() % ((int)(vel_max * 10) - (int)(vel_min * 10)) / 10.0f + vel_min;
 	p[i]->lifetime = rand() % ((int)(lifetime_max * 10) - (int)(lifetime_min * 10)) / 10.0f + lifetime_min;
 	p[i]->angle = rand() % ((int)(angle_max * 10) - (int)(angle_min * 10)) / 10.0f + angle_min;
-	p[i]->time = 0.0f;
+
+}
+
+void ParticleManager::add_particle()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		float vel = rand() % ((int)(vel_max * 10) - (int)(vel_min * 10)) / 10.0f + vel_min;
+		float lifetime = rand() % ((int)(lifetime_max * 10) - (int)(lifetime_min * 10)) / 10.0f + lifetime_min;
+		float angle = rand() % ((int)(angle_max * 10) - (int)(angle_min * 10)) / 10.0f + angle_min;
+
+		Particle* particle = new Particle(pos_x, pos_y, vel, lifetime, angle, size, b, tex);
+		p.push_back(particle);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		if (p.size() >= 1)
+		{
+			int i = p.size() - 1;
+			Particle* temp = p[i];
+			p.erase(p.begin() + i);
+			delete temp;
+			temp = nullptr;
+		}
+	}
 }

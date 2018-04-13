@@ -35,9 +35,9 @@ ParticleSystem::ParticleSystem()
 	tex2.loadFromFile("Crystal_03.png");
 
 
-	ParticleManager* pm1 = new ParticleManager(300, 300, 2, 6, 3, 5, 0, 360, 20, 1000, b_collection[0], tex1);
+	ParticleManager* pm1 = new ParticleManager(300, 300, 2, 6, 3, 5, 0, 360, 20, 50, b_collection[0], tex1);
 	pm.push_back(pm1);
-	ParticleManager* pm2 = new ParticleManager(800, 500, 2, 4, 2, 6, -180, 0, 100, 200, b_collection[1], tex2);
+	ParticleManager* pm2 = new ParticleManager(800, 500, 2, 4, 2, 6, -180, 0, 100, 20, b_collection[1], tex2);
 	pm.push_back(pm2);
 }
 
