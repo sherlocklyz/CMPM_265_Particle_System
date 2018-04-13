@@ -14,7 +14,8 @@ class Particle
 {
 public:
 	Particle();
-	Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, float size_end, std::vector<Behaviour*> b, sf::Texture& tex);
+	Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, 
+			 float rot_end, float size_end, std::vector<Behaviour*> b, sf::Texture& tex);
 	~Particle();
 
 	void update();
@@ -25,6 +26,8 @@ public:
 	float vel_end;
 	float vel;
 	float angle;
+	float rot_end;
+	float rot;
 	float size_end;
 	float size;
 	float lifetime;
@@ -32,4 +35,4 @@ public:
 	std::vector<Behaviour*> b;
 
 	sf::RectangleShape* shape;
-	};
+};

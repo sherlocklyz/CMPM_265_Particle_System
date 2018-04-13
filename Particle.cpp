@@ -8,13 +8,15 @@ Particle::Particle()
 
 }
 
-Particle::Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, float size_end, std::vector<Behaviour*> b, sf::Texture& tex)
+Particle::Particle(float pos_x, float pos_y, float vel_end, float lifetime, float angle, 
+				   float rot_end, float size_end, std::vector<Behaviour*> b, sf::Texture& tex)
 {
 	this->pos_x = pos_x;
 	this->pos_y = pos_y;
 	this->vel_end= vel_end;
 	this->lifetime = lifetime;
 	this->angle = angle;
+	this->rot_end = rot_end;
 	this->size_end = size_end;
 	this->b = b;
 
@@ -47,6 +49,9 @@ void Particle::update()
 	pos.x += vel * cosf(this->angle * 3.1415926f / 180.0f);
 	pos.y += vel * sinf(this->angle * 3.1415926f / 180.0f);
 	shape->setPosition(pos);
+
+	rot = rot_end * this->b[2]->behave(this->time / this->lifetime);
+	shape->setRotation(rot);
 }
 
 void Particle::draw(sf::RenderWindow& window)
