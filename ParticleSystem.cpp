@@ -5,7 +5,7 @@
 
 ParticleSystem::ParticleSystem()
 {
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
@@ -30,15 +30,17 @@ ParticleSystem::ParticleSystem()
 			b_collection[i].push_back(b[j]);
 		}
 	}
-	
+
 	tex1.loadFromFile("Circle_Aura_05.png");
 	tex2.loadFromFile("Crystal_03.png");
 
 
-	ParticleManager* pm1 = new ParticleManager(300, 300, 2, 6, 3, 5, 0, 360, 0, 90, 20, 50, b_collection[0], tex1);
+	ParticleManager* pm1 = new ParticleManager(300, 200, 2, 6, 3, 5, -35, 10, 0, 1080, 80, 300, b_collection[0], tex1);
 	pm.push_back(pm1);
-	ParticleManager* pm2 = new ParticleManager(800, 500, 2, 4, 2, 6, -180, 0, -120, 0, 100, 20, b_collection[1], tex2);
+	ParticleManager* pm2 = new ParticleManager(850, 350, 2, 4, 2, 6, 60, 120, -1080, 0, 60, 200, b_collection[1], tex2);
 	pm.push_back(pm2);
+	ParticleManager* pm3 = new ParticleManager(250, 700, 2, 4, 2, 4, 220, 290, -720, 720, 80, 300, b_collection[2], tex2);
+	pm.push_back(pm3);
 }
 
 ParticleSystem::~ParticleSystem()
