@@ -17,12 +17,23 @@ float LinearDown::behave(float f)
 	return 1 - f;
 }
 
-float EaseIn::behave(float f)
+float EaseInQuad::behave(float f)
 {
 	return f * f;
 }
 
-float EaseOut::behave(float f)
+float BackEaseIn::behave(float f)
+{
+	float PI = 3.1415926f;
+	return f * f * f - f * sin(f * PI);
+}
+
+float EaseOutCube::behave(float f)
+{
+	return (f - 1)*(f - 1)*(f - 1) + 1;
+}
+
+float CosDown::behave(float f)
 {
 	float PI = 3.1415926f;
 	return cosf(PI / 2 * f);

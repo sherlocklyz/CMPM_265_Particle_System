@@ -26,13 +26,26 @@ public:
 	virtual float behave(float f);
 };
 
-class EaseIn : public Behaviour
+class EaseInQuad : public Behaviour
+{
+public:
+	virtual float behave(float f);
+}; 
+
+class BackEaseIn : public Behaviour
 {
 public:
 	virtual float behave(float f);
 };
 
-class EaseOut : public Behaviour
+class EaseOutCube : public Behaviour
+{
+public:
+	virtual float behave(float f);
+};
+
+
+class CosDown : public Behaviour
 {
 public:
 	virtual float behave(float f);

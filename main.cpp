@@ -13,7 +13,7 @@ int main()
 {
 	srand((unsigned)time(0));
 	sf::Clock clock;
-    sf::RenderWindow window(sf::VideoMode(1080,720), "Particle System");
+    sf::RenderWindow window(sf::VideoMode(1280,720), "Particle System");
 	float accumulatedTime = 0.0f;
 	ParticleSystem* ps = new ParticleSystem();
 
